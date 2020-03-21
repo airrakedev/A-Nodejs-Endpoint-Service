@@ -1,0 +1,3 @@
+const queries = {}
+
+exports.queries
