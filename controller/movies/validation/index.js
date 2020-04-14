@@ -14,10 +14,10 @@ validator.toValidate = function (inputs) {
         rentPrice: Joi.number()
             .min(1)
             .required(),
-        genre: Joi.array().items(Joi.string())
+        genre: Joi.string()
             .required(),
-        
-        actor: Joi.array().items(Joi.string()),
+
+        actor: Joi.string(),
         description: Joi.string(),
         plot: Joi.string()
     })

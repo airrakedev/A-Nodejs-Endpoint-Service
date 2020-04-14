@@ -8,7 +8,7 @@ const Schema = new mongoose.Schema({
     title: {
         type: String,
         // unique: [ true, 'Movie title is already taken.' ],
-        required: [ true, 'Movie title is required' ],
+        required: [true, 'Movie title is required'],
         trim: true
     },
     inStock: {
@@ -17,7 +17,7 @@ const Schema = new mongoose.Schema({
     },
     rentPrice: {
         type: Number,
-        required: [ true, 'Price is required' ]
+        required: [true, 'Price is required']
     },
     description: {
         type: String
@@ -26,7 +26,7 @@ const Schema = new mongoose.Schema({
         type: String
     },
     genre: [
-    {
+        {
             type: new mongoose.Schema({
                 title: {
                     type: String,
@@ -34,9 +34,9 @@ const Schema = new mongoose.Schema({
                     trim: true
                 }
             }),
-            required: [ true, 'Movie genre is required.' ]
+            required: [true, 'Movie genre is required.']
         }
-     ],
+    ],
     image: {
         type: String
     },
