@@ -12,10 +12,7 @@ const {
   processImageProfile
 } = require('./../../startup/helpers')
 
-const {
-  toValidate,
-  movieUpdate
-} = require('./validation')
+const { toValidate, movieUpdate } = require('./validation')
 
 const movieController = {}
 
@@ -32,6 +29,17 @@ movieController.getMovies = catchAsyncErrors(async (req, res) => {
     data: movies
   })
 })
+
+movieController.getOnlyMovie = catchAsyncErrors(async (req, res) => {
+  
+  let { id } = req.params
+  if (!id) return res.status(400).json({ success: false, message: 'No id provided!' })
+
+  let getMovie = await Movie.find({ _id: id })
+  if (!getMovie) return res.status(400).json({ success: false, message: "No records found." })
+
+  return res.status(200).json({ success: true, data: getMovie })
+});
 
 
 

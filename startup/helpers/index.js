@@ -18,7 +18,7 @@ helpers.getGenresIdArray = async function (array_id) {
       })
     }
   }
-  console.log('Hoy', result)
+
   return result
 }
 
