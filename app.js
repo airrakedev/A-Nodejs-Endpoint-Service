@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 
+const morgan = require('morgan')
+
 const path = require('path')
 require('dotenv').config()
 const port = process.env.APP_PORT
@@ -36,16 +38,16 @@ app.use(errorBaseCatcher)
 
 // ERROR FILTERS 
 process.on('uncaughtException', (error) => {
-    console.log(error.message, 'Uncaught Exception')
+   console.log(error.message, 'Uncaught Exception')
 })
 
 process.on('unhandledRejection', (error) => {
-    // console.log(error.message, '\n Unhandled Error Rejection')
-    console.log(error, 'Unhandled Error Rejection')
-    // process.exit(0)
+   // console.log(error.message, '\n Unhandled Error Rejection')
+   console.log(error, 'Unhandled Error Rejection')
+   // process.exit(0)
 })
 
-
-
+// LOGGER
+morgan('tiny')
 
 app.listen(port, () => console.log(`Live at PORT ${port}`))

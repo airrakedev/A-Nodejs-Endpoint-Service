@@ -6,7 +6,8 @@ const auth = require('./../../startup/auth')
 const { MovieController } = require('./../../controller')
 
 
-Router.get('/', auth, MovieController.getMovies)
+// Router.get('/', auth, MovieController.getMovies)
+Router.get('/', MovieController.getMovies)
 
 Router.get('/:id', auth, MovieController.getOnlyMovie)
 
