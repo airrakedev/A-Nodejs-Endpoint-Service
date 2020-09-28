@@ -4,8 +4,7 @@
    "description": "A movie rental project",
    "main": "app.js",
    "scripts": {
-      "serve": "nodemon index.js",
-      "start": "index.js"
+      "start": "app.js"
    },
    "author": "Eric T. Mangpang",
    "license": "ISC",
