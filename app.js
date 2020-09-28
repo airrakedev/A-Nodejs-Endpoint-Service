@@ -33,6 +33,10 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 // ROUTES
 app.use(routes)
 
+app.get('/', function (req, res) {
+   res.send('hello world')
+})
+
 // ERROR LOGGER
 app.use(errorBaseCatcher)
 
