@@ -54,4 +54,4 @@ process.on('unhandledRejection', (error) => {
 // LOGGER
 morgan('tiny')
 
-app.listen(port || 5000, () => console.log(`Live at PORT ${port}`))
+app.listen(process.env.PORT || 4000, () => console.log(`Live at PORT ${process.env.PORT}`))
