@@ -5,7 +5,7 @@ const morgan = require('morgan')
 
 const path = require('path')
 require('dotenv').config()
-const port = process.env.APP_PORT
+const port = process.env.PORT || 4000
 const { connection } = require('./startup/db')
 
 const { errorBaseCatcher } = require('./startup/error-logger')
@@ -54,4 +54,4 @@ process.on('unhandledRejection', (error) => {
 // LOGGER
 morgan('tiny')
 
-app.listen(process.env.PORT || 4000, () => console.log(`Live at PORT ${process.env.PORT}`))
+app.listen(port, () => console.log(`Live at PORT ${port}`))

@@ -24,7 +24,7 @@ movieController.getMovies = catchAsyncErrors(async (req, res) => {
    const options = {
       page: parseInt(pageNumber, 10) || 1,
       limit: parseInt(limit, 10) || 10,
-      sort: sort || { created: -1 },
+      sort: (sort) ? JSON.parse(sort) : { created: -1 },
    };
 
    let movies = await Movie.paginate({}, options)

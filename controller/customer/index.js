@@ -8,41 +8,64 @@ const { catchAsyncErrors } = require('./../../startup/error-logger')
 const customerController = {}
 
 customerController.createCustomer = catchAsyncErrors(async (req, res) => {
-    const { firstname, lastname, phone, email, address, password } = req.body
-    const { error } = validateCreate(req.body)
+   const { firstname, lastname, phone, email, address, password } = req.body
+   const { error } = validateCreate(req.body)
 
-    if (error) return res.status(400).json({ success: false, message: error.details[ 0 ].message })
+   if (error) return res.status(400).json({ success: false, message: error.details[0].message })
 
-    let checkEmail = await Customers.findOne({ email })
-    if (checkEmail) return res.status(400).json({ success: false, message: "Email already exist. Please use another one." })
+   let checkEmail = await Customers.findOne({ email })
+   if (checkEmail) return res.status(400).json({ success: false, message: "Email already exist. Please use another one." })
 
-    let customer = await Customers.create({ firstname, lastname, phone, email, address, password })
-    if (!customer) return res.status(400).json({ success: false, message: 'Unable to create customer record.' })
+   let customer = await Customers.create({ firstname, lastname, phone, email, address, password })
+   if (!customer) return res.status(400).json({ success: false, message: 'Unable to create customer record.' })
 
-    res.status(200).json({ success: true, data: customer })
+   res.status(200).json({ success: true, data: customer })
 })
 
 
-customerController.login = async(req, res)=>{
+customerController.login = async (req, res) => {
 
-	const {email, password} = req.body
+   const { email, password } = req.body
 
-	if(!req.body.email || !req.body.password)return res.status(400).json({success:false, message:!email?+"Please provide email." : '' + !password?"Please provide password." : ''})
-		
-	let User = await Customers.findOne({email})
-	if(!User)return res.status(400).json({success:false, message:`Can\'t find ${email}`})
+   if (!req.body.email || !req.body.password) return res.status(400).json({ success: false, message: !email ? +"Please provide email." : '' + !password ? "Please provide password." : '' })
 
-	let checkPass = await User.comparePassword(password)
-	if(!checkPass)return res.status(400).json({success:false, message:`Invalid password`})
+   let User = await Customers.findOne({ email })
+   if (!User) return res.status(400).json({ success: false, message: `Can\'t find ${email}` })
 
-	let token = await User.setUSerAuthorizationToken()	
-	if(!token)return res.status(400).json({success:false, message:`Couldn't create token for you.`})
+   let checkPass = await User.comparePassword(password)
+   if (!checkPass) return res.status(400).json({ success: false, message: `Invalid password` })
 
-	User = _.pick(User, ['status', '_id', 'firstname', 'lastname', 'phone', 'email', 'address'])
+   let token = await User.setUSerAuthorizationToken()
+   if (!token) return res.status(400).json({ success: false, message: `Couldn't create token for you.` })
 
-	req.user = token
+   User = _.pick(User, ['status', '_id', 'firstname', 'lastname', 'phone', 'email', 'address'])
 
-	return res.status(200).json({success:true, message:User, token})
+   req.user = token
+
+   return res.status(200).json({ success: true, message: User, token })
+}
+
+// Get Client
+customerController.getAllClient = async (req, res) => {
+   const { pageNumber, limit, sort } = req.query
+
+   const options = {
+      page: parseInt(pageNumber, 10) || 1,
+      limit: parseInt(limit, 10) || 10,
+      sort: JSON.parse(sort) || { created: -1 },
+   };
+   console.log(options, "Ui")
+
+   let clients = await Customers.paginate({}, options)
+   if (!clients) return res.status(400).json({
+      success: false,
+      message: 'No records found for Clients'
+   })
+
+   return res.status(200).json({
+      success: true,
+      data: clients
+   })
 }
 
 

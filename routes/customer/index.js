@@ -11,4 +11,7 @@ Router.post('/register', CustomerController.createCustomer)
 // LOGIN
 Router.post('/login', CustomerController.login)
 
+// ALL CLIENTS
+Router.get('/all-clients', auth, CustomerController.getAllClient)
+
 module.exports = Router
