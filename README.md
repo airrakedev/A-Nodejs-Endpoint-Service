@@ -22,5 +22,3 @@ An application that provides API endpoints for client-side application, gives us
 2. npm run start - to start the application
 3. to properly run the application, you should pull the repo for the <a href="https://github.com/airrakedev/Vuejs-and-Vuetify-with-Vuex-and-Vuerouter-application">client-side</a> application.
 
-
-<img src="src/assets/thumbnail/Screen%20Shot%202020-09-13%20at%2010.52.02%20PM.png"/>
