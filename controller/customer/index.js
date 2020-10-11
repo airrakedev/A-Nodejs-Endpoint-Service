@@ -38,7 +38,7 @@ customerController.login = async (req, res) => {
    let token = await User.setUSerAuthorizationToken()
    if (!token) return res.status(400).json({ success: false, message: `Couldn't create token for you.` })
 
-   User = _.pick(User, ['status', '_id', 'firstname', 'lastname', 'phone', 'email', 'address'])
+   User = _.pick(User, ['status', '_id', 'firstname', 'lastname', 'phone', 'email', 'address', 'country', 'zipcode'])
 
    req.user = token
 
@@ -54,7 +54,6 @@ customerController.getAllClient = async (req, res) => {
       limit: parseInt(limit, 10) || 10,
       sort: JSON.parse(sort) || { created: -1 },
    };
-   console.log(options, "Ui")
 
    let clients = await Customers.paginate({}, options)
    if (!clients) return res.status(400).json({

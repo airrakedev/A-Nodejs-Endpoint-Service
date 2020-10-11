@@ -11,7 +11,7 @@ Router.use('/genres/v1', require('./genres'))
 Router.use('/movie/v1', require('./movies'))
 
 // RENTALS
-Router.use('/rentals/v1', require('./rentals'))
+Router.use('/purchase/v1', require('./purchase'))
 
 // CUSTOMER
 Router.use('/customer/v1', require('./customer'))

@@ -1,16 +1,8 @@
 const _ = require('lodash')
-const {
-   Movie,
-   Genres
-} = require('./../../models')
-const {
-   catchAsyncErrors
-} = require('./../../startup/error-logger')
+const { Movie, Genres } = require('./../../models')
+const { catchAsyncErrors } = require('./../../startup/error-logger')
 
-const {
-   getGenresIdArray,
-   processImageProfile
-} = require('./../../startup/helpers')
+const { getGenresIdArray, processImageProfile } = require('./../../startup/helpers')
 
 const { toValidate, movieUpdate } = require('./validation')
 
