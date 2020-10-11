@@ -5,7 +5,9 @@ const morgan = require('morgan')
 
 const path = require('path')
 require('dotenv').config()
+
 const port = process.env.PORT || 4000
+
 const { connection } = require('./startup/db')
 
 const { errorBaseCatcher } = require('./startup/error-logger')

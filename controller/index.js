@@ -1,7 +1,7 @@
 module.exports = {
-    AdminController: require('./admin'),
-    MovieController: require('./movies'),
-    GenreController: require('./genres'),
-    RentalController: require('./rentals'),
-    CustomerController: require('./customer')
+   AdminController: require('./admin'),
+   MovieController: require('./movies'),
+   GenreController: require('./genres'),
+   PurchaseController: require('./purchase'),
+   CustomerController: require('./customer')
 }
